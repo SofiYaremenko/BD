@@ -1,5 +1,5 @@
 <?php 
-  $conn = mysqli_connect('localhost', 'root', '', 'ajax');
+  $conn = mysqli_connect('localhost', 'root', '', 'explordb');
   if (!$conn) {
     die('Connection failed ' . mysqli_error($conn));
   }
@@ -49,7 +49,7 @@
   }
 
   // Retrieve comments from database
-  $sql = "SELECT * FROM comments";
+  $sql = "SELECT * FROM managers";
   $result = mysqli_query($conn, $sql);
   $comments = '<div id="display_area">'; 
   while ($row = mysqli_fetch_array($result)) {
