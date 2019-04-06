@@ -1,8 +1,17 @@
-<html>
+<html ng-app="crudApp">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="adminstyle.css">
-<link rel="stylesheet" href="ajaxStyle.css">
+
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<!-- Include jQuery library -->
+<script src="jquery-3.3.1.min.js"></script>
+<!-- Include AngularJS library -->
+<script src="angular.min.js"></script>
+<!-- Include Bootstrap Javascript -->
+<script src="bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -23,26 +32,9 @@
 </div>
 
 <div class="main">
-   <div class="wrapper">
-    <?php echo $comments; ?>
-    <form class="comment_form">
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name">
-      </div>
-      <div>
-        <label for="comment">Comment:</label>
-        <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
-      </div>
-      <button type="button" id="submit_btn">POST</button>
-      <button type="button" id="update_btn" style="display: none;">UPDATE</button>
-    </form>
-  </div>
+ 
 
 </div>
 
 </body>
 </html>
-
-<script src="jquery-3.3.1.min"></script>
-<script src="scripts.js"></script>
