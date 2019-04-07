@@ -46,7 +46,7 @@ include("db.php");
 </div>
 </div>
 <p>
-      <a href="clients.php">Admin tools</a>
+      <a href="admin_view/clients.php">Admin tools</a>
     </p>
 
 </body>

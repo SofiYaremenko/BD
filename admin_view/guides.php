@@ -58,7 +58,7 @@
           <?php 
             $sql = mysqli_query($db, "SELECT tab_number FROM guides");
             while ($row = $sql->fetch_assoc()){
-            echo "<option value= /" . $row['tab_number'] .">" . $row['tab_number'] . "</option>";}?>
+            echo "<option value= \"" . $row['tab_number'] ."\">" . $row['tab_number'] . "</option>";}?>
         </select>
       </div>
 
