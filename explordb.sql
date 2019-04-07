@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 07, 2019 at 10:38 AM
+-- Generation Time: Apr 07, 2019 at 08:46 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `id_client` int(11) NOT NULL AUTO_INCREMENT,
   `cl_login` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `cl_password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `cl_password` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `user_type` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `cl_surname` varchar(30) CHARACTER SET latin1 NOT NULL,
   `cl_name` varchar(30) CHARACTER SET latin1 NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `email` varchar(50) CHARACTER SET latin1 NOT NULL,
   `cl_phone` varchar(10) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `clients`
@@ -73,7 +73,8 @@ CREATE TABLE IF NOT EXISTS `clients` (
 
 INSERT INTO `clients` (`id_client`, `cl_login`, `cl_password`, `user_type`, `cl_surname`, `cl_name`, `cl_fname`, `passport_n`, `birthday`, `email`, `cl_phone`) VALUES
 (1, 'Sofi', 'Sofi', 'user', 'Yaremenko', 'Sofi', '', '', '1999-09-26', 'sofia@yaremenko.ws', '0973360447'),
-(3, 'Liza', 'liza_user', 'user', 'Big', 'Liza', '', 'TY123529', '1999-07-12', 'liza@gmail.com', '0452317628');
+(3, 'Liza', 'liza_user', 'user', 'Big', 'Liza', '', 'TY123520', '1999-07-11', 'liza@gmail.com', '0452317609'),
+(4, 'Ariel', '$2y$10$sPc7xaNOURz1TAFLtDSE9.4INvvc4YLzYp5AxBUFRm82fLZDX/reC', 'user', 'Rusalka', 'Ariel', 'Poseydon', 'TT330000', '1900-04-07', 'ariel@gmail.com', '0973360400');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,14 @@ CREATE TABLE IF NOT EXISTS `excursion_order` (
   KEY `fk_excurs` (`fk_excurs`),
   KEY `fk_carrier` (`fk_carrier`),
   KEY `fk_guides` (`fk_guides`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `excursion_order`
+--
+
+INSERT INTO `excursion_order` (`id_excurs_order`, `price`, `excurs_date`, `time_start`, `fk_excurs`, `fk_carrier`, `fk_guides`) VALUES
+(1, 15, '2019-04-12', '08:00:00', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +162,7 @@ DROP TABLE IF EXISTS `guides`;
 CREATE TABLE IF NOT EXISTS `guides` (
   `tab_number` int(11) NOT NULL AUTO_INCREMENT,
   `g_login` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `g_password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `g_password` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `g_usertype` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `g_surname` varchar(30) CHARACTER SET latin1 NOT NULL,
   `g_name` varchar(30) CHARACTER SET latin1 NOT NULL,
@@ -162,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `guides` (
   `g_phone` char(10) CHARACTER SET latin1 NOT NULL,
   `g_anoth_phone` char(10) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`tab_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `guides`
@@ -170,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `guides` (
 
 INSERT INTO `guides` (`tab_number`, `g_login`, `g_password`, `g_usertype`, `g_surname`, `g_name`, `g_fname`, `g_phone`, `g_anoth_phone`) VALUES
 (1, 'Katryn', 'g_katryn', 'guide', 'Krinecheva', 'Katryn', NULL, '0675842344', NULL),
-(2, 'sofiyaremenko', 'admin', 'user', 'Big', 'Liza', 'ADMIN', '0452317628', '');
+(4, 'Nik', '$2y$10$BCbVSwUOXFO4EHRkGkTOeeKFy/mQNWqGrhkfmnWitc0KoA0n43gSC', 'guide', 'Petrov', 'Nik', '', '0674028982', '');
 
 -- --------------------------------------------------------
 
@@ -214,7 +222,7 @@ DROP TABLE IF EXISTS `managers`;
 CREATE TABLE IF NOT EXISTS `managers` (
   `id_manager` int(11) NOT NULL AUTO_INCREMENT,
   `manag_login` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `manag_password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `manag_password` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `m_usertype` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `manag_surname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `manag_name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -222,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `managers` (
   `manag_phone` char(10) COLLATE utf8_unicode_ci NOT NULL,
   `m_anoth_phone` char(10) CHARACTER SET utf32 COLLATE utf32_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_manager`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `managers`
@@ -231,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `managers` (
 INSERT INTO `managers` (`id_manager`, `manag_login`, `manag_password`, `m_usertype`, `manag_surname`, `manag_name`, `manag_fname`, `manag_phone`, `m_anoth_phone`) VALUES
 (1, 'NataAdmin', 'admin', 'admin', 'Rybak', 'Nata', '', '0982732085', ''),
 (2, 'SofiAdmin', 'admin', 'admin', 'Yaremenko', 'Sofi', NULL, '0973360447', NULL),
-(4, 'Admin', 'admin', 'admin', 'Big', 'Admin', 'ADMIN', '0973360448', '');
+(10, 'Admin', '$2y$10$6AnDRtX4RXJtIDyKC6Njj.AF/1W3mpF8Hj0s.LjcwzXKYxwhWYuU6', 'admin', 'Big', 'Admin', 'ADMIN', '0973000000', '');
 
 -- --------------------------------------------------------
 
@@ -246,8 +254,8 @@ CREATE TABLE IF NOT EXISTS `order` (
   `deadline_pay` date NOT NULL,
   `persons` int(11) NOT NULL,
   `language` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `response` varchar(300) CHARACTER SET latin1 NOT NULL,
-  `discount` int(11) NOT NULL,
+  `response` varchar(300) CHARACTER SET latin1 DEFAULT NULL,
+  `discount` int(11) DEFAULT NULL,
   `if_payed` tinyint(1) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `client_c_id` int(11) NOT NULL,
@@ -256,9 +264,15 @@ CREATE TABLE IF NOT EXISTS `order` (
   PRIMARY KEY (`id_order`),
   KEY `excurs_c_id` (`excurs_c_id`),
   KEY `manag_c_id` (`manag_c_id`),
-  KEY `client_c_id` (`client_c_id`),
-  KEY `client_c_id_2` (`client_c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `client_c_id` (`client_c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id_order`, `order_date`, `deadline_pay`, `persons`, `language`, `response`, `discount`, `if_payed`, `status`, `client_c_id`, `manag_c_id`, `excurs_c_id`) VALUES
+(2, '2019-04-07', '2019-04-10', 2, 'ukr', NULL, NULL, 1, 1, 4, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -276,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `places` (
   `longitude` float NOT NULL,
   `latitude` float NOT NULL,
   PRIMARY KEY (`id_place`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `places`
@@ -284,8 +298,7 @@ CREATE TABLE IF NOT EXISTS `places` (
 
 INSERT INTO `places` (`id_place`, `name_place`, `discrip_place`, `max_people_place`, `provider`, `longitude`, `latitude`) VALUES
 (1, 'KMA', 'Univers in Kyiv', NULL, NULL, 98765, 765432),
-(2, 'kpi', 'Univers in Kyiv', NULL, NULL, 24375, 475878),
-(4, '', '', 0, '', 747532, 653234);
+(2, 'kpi', 'Univers in Kyiv', NULL, NULL, 24375, 475878);
 
 -- --------------------------------------------------------
 
@@ -306,10 +319,9 @@ CREATE TABLE IF NOT EXISTS `possess` (
 --
 
 INSERT INTO `possess` (`guides_fk`, `languag_fk`) VALUES
-(1, 3),
 (1, 9),
-(1, 13),
-(2, 13);
+(1, 12),
+(1, 13);
 
 --
 -- Constraints for dumped tables
@@ -335,7 +347,7 @@ ALTER TABLE `excursion_order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`client_c_id`) REFERENCES `clients` (`id_client`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`excurs_c_id`) REFERENCES `excursions` (`id_excursion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`excurs_c_id`) REFERENCES `excursion_order` (`id_excurs_order`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `order_ibfk_3` FOREIGN KEY (`manag_c_id`) REFERENCES `managers` (`id_manager`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
