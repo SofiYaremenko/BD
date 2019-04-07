@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 }
                             }else{
                                 $sql2 = "SELECT tab_number, g_login, g_password FROM guides WHERE g_login = ?";
-                                if($stmt = mysqli_prepare($connection, $sql2)){
+                                if($stmt = mysqli_prepare($link, $sql2)){
                                     mysqli_stmt_bind_param($stmt, "s", $param_username);
                                     $param_username = $username;
                                     if(mysqli_stmt_execute($stmt)){

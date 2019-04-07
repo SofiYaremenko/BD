@@ -66,4 +66,51 @@ if (isset($_GET['del_or'])) {
 	header('location: orders.php');
 }
 
+
+	$id_excurs_order= 0;
+	$price= 0;
+	$excurs_date= "";
+	$time_start= "";
+	$fk_excurs= 0;
+	$fk_carrier= 0;
+	$fk_guides= 0;
+
+
+	if (isset($_POST['save_oe'])) {
+		$price=  $_POST['price'];
+		$excurs_date=  $_POST['excurs_date'];
+		$time_start=  $_POST['time_start'];
+		$fk_excurs=  $_POST['fk_excurs'];
+		$fk_carrier=  $_POST['fk_carrier'];
+		$fk_guides=  $_POST['fk_guides'];
+
+		mysqli_query($link, "INSERT INTO excursion_order (price, excurs_date, time_start, fk_excurs, fk_carrier, fk_guides) 
+			VALUES ($price,'$excurs_date', '$time_start', $fk_excurs, $fk_carrier, $fk_guides)"); 
+		$_SESSION['message'] = "Add"; 
+		header('location: order_excursions.php');
+	}
+
+	if (isset($_POST['update_oe'])) {
+		$price=  $_POST['price'];
+		$excurs_date=  $_POST['excurs_date'];
+		$time_start=  $_POST['time_start'];
+		$fk_excurs=  $_POST['fk_excurs'];
+		$fk_carrier=  $_POST['fk_carrier'];
+		$fk_guides=  $_POST['fk_guides'];
+
+		mysqli_query($link, "UPDATE excursion_order SET price=$price, excurs_date='$excurs_date', time_start='$time_start', fk_excurs=$fk_excurs, fk_carrier=$fk_carrier, fk_guides=$fk_guides WHERE id_excurs_order=$id_excurs_order");
+		$_SESSION['message'] = "Updated!"; 
+		header('location: order_excursions.php');
+}
+
+
+
+if (isset($_GET['del_oe'])) {
+	$id_excurs_order = $_GET['del_oe'];
+	mysqli_query($link, "DELETE FROM excursion_order WHERE id_excurs_order=$id_excurs_order");
+	$_SESSION['message'] = "Deleted!"; 
+	header('location: order_excursions.php');
+}
+
+
 ?>

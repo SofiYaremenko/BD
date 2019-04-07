@@ -10,7 +10,7 @@
 <div class="topnav"> <a class="hover">ExplorUAm</a>
   <a href="future_excurs.php">My future excursions</a>
   <a href="guide_info.php">My info</a>
-  <a href="../main.php" style="float:right"> Logout </a>
+  <a href="../main.php" style="float:right">Account </a>
 </div>
 
 

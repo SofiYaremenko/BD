@@ -45,9 +45,6 @@ include("config.php");
 
 </div>
 </div>
-<p>
-      <a href="admin_view/clients.php">Admin tools</a>
-    </p>
 
 </body>
 </html>

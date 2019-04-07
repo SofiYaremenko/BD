@@ -9,7 +9,7 @@ session_start();
   }else{
       $username = $_SESSION['username'];
 
-      $sql = mysqli_query($connection, "SELECT * FROM guides WHERE g_login='$username'");
+      $sql = mysqli_query($link, "SELECT * FROM guides WHERE g_login='$username'");
 
     if(mysqli_num_rows($sql) == 0){
           die("This username could not be found! ");

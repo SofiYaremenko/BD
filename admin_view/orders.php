@@ -1,9 +1,9 @@
-<?php  include('server_ord.php');
+<?php  include('../config.php');
 
   if (isset($_GET['edit_or'])) {
     $id_order = $_GET['edit_or'];
     $update = true;
-    $record = mysqli_query($db, "SELECT * FROM order WHERE id_order=$id_order");
+    $record = mysqli_query($link, "SELECT * FROM order WHERE id_order=$id_order");
 
     if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
@@ -53,7 +53,7 @@
     ?>
   </div>
 <?php endif ?>
-<?php $results = mysqli_query($db, "SELECT * FROM order"); 
+<?php $results = mysqli_query($link, "SELECT * FROM order"); 
 ?>
 
 <table style="width: 95%">
