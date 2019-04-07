@@ -18,16 +18,6 @@
   <a href="order_excursions.php">Order excursions</a>
 </div>
 
-<div class="sidenav">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
-</div>
-
-<div class="main">
-
-</div>
 
 </body>
 </html>
