@@ -1,23 +1,24 @@
 <html>
 <head>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
 <div class="topnav"> <a>ExplorUAm</a>
-  <a class="active" href="main.php">Home</a>
-  <a href="login.php">Login</a>
-  <a href="register.php">Register</a>
+  <a class="active"  href="main.php">Excursions</a>
+    <a href="user_order.php">My Orders</a>
+    <a href="user_info.php">Account</a>
+    <a href="../logout.php" style="float:right"> Logout </a>
 </div>
 
 
 <div><br/><center><h2><font face="Lucida Handwriting" size="+1" color="#00CCFF">Excursions</font></h2></center></div>
 <div style="width:100%;float:left" >
 <?php
-include("config.php");
+include("../db.php");
 
 
-   $sel=mysqli_query($link,"select * from excursions");
+   $sel=mysqli_query($connection,"select * from excursions");
    echo"<form method='post'><table border='0' align='center'><tr>";
    $n=1;
     while($arr=mysqli_fetch_array($sel))
@@ -28,7 +29,7 @@ include("config.php");
 	echo "<tr>";
 	}
    echo "
-   <td height='280' width='240' align='center'><img src='img/tour/$i.jpg' height='200' width='200'><br/>".
+   <td height='280' width='240' align='center'><img src='../img/tour/$i.jpg' height='200' width='200'><br/>".
    "<br>".$arr['name_excurs'].
    "<br><b>Discription: </b>".$arr['discrip_excurs'].
    "<br><b>Cost: </b>".$arr['cost_excurs'].

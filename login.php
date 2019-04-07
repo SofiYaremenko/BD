@@ -3,7 +3,15 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: user.php");
+    if ($_SESSION["user_type"] =="user"){
+    header("location:user_view/user_info.php");
+    }
+    else if ($_SESSION["user_type"] =="admin"){
+        header("location:admin_view/clients.php");
+    }else
+    {
+        header("location:guide_view/guide_info.php");
+    }
     exit;
 }
 
@@ -36,18 +44,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare a select statement
         $sql = "SELECT id_client, cl_login, cl_password FROM clients WHERE cl_login = ?";
 
-        if($stmt = mysqli_prepare($connection, $sql)){
+        if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-
             // Set parameters
             $param_username = $username;
-
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Store result
                 mysqli_stmt_store_result($stmt);
-
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){
                     // Bind result variables
@@ -57,24 +62,72 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
                             session_start();
-
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-
+                            $_SESSION["user_type"] = "user";
                             // Redirect user to welcome page
-                            header("location: user.php");
+                            header("location: user_view/user_info.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
                         }
                     }
-                } else{
-                    // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                }else {
+                    $sql1 = "SELECT id_manager, manag_login, manag_password FROM managers WHERE manag_login = ?";
+                    if ($stmt = mysqli_prepare($link, $sql1)) {
+                        mysqli_stmt_bind_param($stmt, "s", $param_username);
+                        $param_username = $username;
+                        if (mysqli_stmt_execute($stmt)) {
+                            mysqli_stmt_store_result($stmt);
+                            if (mysqli_stmt_num_rows($stmt) == 1) {
+                                mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                                if (mysqli_stmt_fetch($stmt)) {
+                                    if (password_verify($password, $hashed_password)) {
+                                        session_start();
+                                        $_SESSION["loggedin"] = true;
+                                        $_SESSION["id"] = $id;
+                                        $_SESSION["username"] = $username;
+                                        $_SESSION["user_type"] = "admin";
+
+                                        header("location:admin_view/clients.php");
+                                    } else {
+                                        $password_err = "The password you entered was not valid.";
+                                    }
+                                }
+                            }else{
+                                $sql2 = "SELECT tab_number, g_login, g_password FROM guides WHERE g_login = ?";
+                                if($stmt = mysqli_prepare($connection, $sql2)){
+                                    mysqli_stmt_bind_param($stmt, "s", $param_username);
+                                    $param_username = $username;
+                                    if(mysqli_stmt_execute($stmt)){
+                                        mysqli_stmt_store_result($stmt);
+                                        if(mysqli_stmt_num_rows($stmt) == 1){
+                                            mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                                            if(mysqli_stmt_fetch($stmt)){
+                                                if(password_verify($password, $hashed_password)){
+                                                    session_start();
+                                                    $_SESSION["loggedin"] = true;
+                                                    $_SESSION["id"] = $id;
+                                                    $_SESSION["username"] = $username;
+                                                    $_SESSION["user_type"] = "guide";
+
+                                                    header("location: guide_view/guide_info.php");
+                                                } else{
+                                                    $password_err = "The password you entered was not valid.";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            // Display an error message if username doesn't exist
+                            $username_err = "No account found with that username.";
+                        }
+                    }
                 }
-            } else{
+            }else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
@@ -84,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Close connection
-    mysqli_close($connection);
+    mysqli_close($link);
 }
 ?>
 

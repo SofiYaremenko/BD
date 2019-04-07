@@ -1,7 +1,7 @@
 <?php
 
-$connection = mysqli_connect('localhost:3306', 'root', '', 'explordb');
+$link = mysqli_connect('localhost', 'root', '', 'explordb');
 // Check connection
-if($connection === false){
+if($link === false){
     die("ERROR: Could not connect to DB. " . mysqli_connect_error());
 }

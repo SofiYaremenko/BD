@@ -34,7 +34,7 @@
   <a href="guides.php">Guides</a>
   <a class="active" href="managers.php">Managers</a>
   <a href="order_excursions.php">Order excursions</a>
-  <a href="../main.php" style="float:right"> Logout </a>
+  <a href="../logout.php" style="float:right"> Logout </a>
 </div>
 
 

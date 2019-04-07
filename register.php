@@ -25,18 +25,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Set parameters
             $param_username = trim($_POST["username"]);
-            /*$param_password = trim($_POST["password"]);
-            $param_type = "user_type";
-            $param_surname = trim($_POST["lastname"]);
-            $param_name = trim($_POST["firstname"]);
-            $param_fname = "";
-            $param_passport = trim($_POST["passport_num"]);
-            $param_birthday = trim($_POST["birthday"]);
-            $param_email = trim($_POST["email"]);
-            $param_phone = trim($_POST["phone"]);*/
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+                
                 /* store result */
                 mysqli_stmt_store_result($stmt);
 
@@ -132,6 +124,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_phone = $phone;
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+                
+                session_start();
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id"] = $id;
+                $_SESSION["username"] = $username;
                 // Redirect to login page
                 header("location: login.php");
             } else{
