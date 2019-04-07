@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM clients WHERE id_client=$id_client");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
 
       $cl_login= $n['cl_login'];

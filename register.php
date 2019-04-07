@@ -223,8 +223,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <span class="help-block"><?php echo $confirm_password_err; ?></span>
         </div>
         <div class="input-group">
-            <input type="submit" class="btn btn-primary" value="Submit">
-            <input type="reset" class="btn btn-default" value="Reset">
+            <input type="submit" class="btn" value="Submit">
+            <input type="reset" class="btn" value="Reset">
         </div>
         <p>Already have an account? <a href="login.php">Login here</a>.</p>
     </form>

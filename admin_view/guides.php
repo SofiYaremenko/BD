@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM guides WHERE tab_number=$tab_number");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
       $g_login= $n['g_login'];
       $g_password= $n['g_password'];
@@ -154,14 +154,14 @@
     <div class="input-group">
       <?php if ($update == false): ?>
       <label>Password</label>
-      <input type="text" name="usertype" value="<?php echo $g_password; ?>">
+      <input type="text" name="password" value="<?php echo $g_password; ?>">
       <?php else: ?>
-      <input type="hidden" name="usertype" value="<?php echo $g_password; ?>">
+      <input type="hidden" name="password" value="<?php echo $g_password; ?>">
       <?php endif ?>
     </div>
     <div class="input-group">
       <label>User type</label>
-      <input type="text" name="password" value="<?php echo $g_usertype; ?>">
+      <input type="text" name="usertype" value="<?php echo $g_usertype; ?>">
     </div>
     <div class="input-group">
       <label>Surname</label>

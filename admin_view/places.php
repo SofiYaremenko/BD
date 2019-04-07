@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM places WHERE id_place=$id_place");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
       $name_place= $n['name_place'];
       $discrip_place= $n['discrip_place'];

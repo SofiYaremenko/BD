@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM managers WHERE id_manager=$id_manager");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
       $manag_login= $n['manag_login'];
       $manag_password= $n['manag_password']; 

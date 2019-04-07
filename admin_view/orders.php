@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM order WHERE id_order=$id_order");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
 
       $order_date =  $n['order_date'];

@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM excursions WHERE id_excursion=$id_excursion");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record)== 1 ) {
       $n = mysqli_fetch_array($record);
       $name_excurs= $n['name_excurs'];
       $discrip_excurs= $n['discrip_excurs'];

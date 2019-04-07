@@ -5,7 +5,7 @@
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM carrier WHERE id_carrier=$id_carrier");
 
-    if (count($record) == 1 ) {
+    if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
       $car_number= $n['car_number'];
       $name_company= $n['name_company'];
