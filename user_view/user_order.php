@@ -10,13 +10,7 @@
       $username = $_SESSION['username'];
 
       $sql = mysqli_query($link, "SELECT * FROM clients WHERE cl_login='$username'");
-      $sql1 = mysqli_query($link,"SELECT E.name_excurs, E.duration, EO.excurs_date, O.if_payed\n"
-                                              . "FROM (excursions E \n"
-                                              . "      INNER JOIN excursion_order EO ON E.id_excursion = EO.fk_excurs)\n"
-                                              . "      INNER JOIN orders O ON O.excurs_c_id = EO.id_excurs_order\n"
-                                              . "WHERE O.client_c_id = (SELECT id_client\n"
-                                              . "                       FROM clients\n"
-                                              . "                       WHERE cl_login = '$username')");
+      $sql1 = mysqli_query($link,"SELECT E.name_excurs, E.duration, EO.excurs_date,O.status, O.if_payed FROM (`excursions` E INNER JOIN `excursion_order` EO ON E.id_excursion = EO.fk_excurs) INNER JOIN `order` O ON O.excurs_c_id = EO.id_excurs_order WHERE O.client_c_id = (SELECT id_client FROM clients WHERE cl_login = '$username')");
 
       if(mysqli_num_rows($sql) == 0){
           die("This username could not be found! ");
@@ -80,6 +74,7 @@
             <th>Name</th>
             <th>Date</th>
             <th>Duration</th>
+            <th>Confirmed</th>
             <th>Payed</th>
             <th></th>
         </tr>
@@ -89,7 +84,8 @@
             <td><?php echo $row['name_excurs']; ?></td>
             <td><?php echo $row['excurs_date']; ?></td>
             <td><?php echo $row['duration']; ?></td>
-            <td><?php echo $row['if_payed']; ?></td>
+            <td><?php if ($row['status'] == 1) echo "Yes" else echo "No" ?></td>
+            <td><?php if ($row['if_payed'] == 1) echo "Yes" else echo "No"; ?></td>
             <td>
 <!--                <a href="clients.php?edit_cl=--><?php //echo $row['id_client']; ?><!--" class="edit_btn" >Edit</a>-->
                 <button type="submit" class="btn" name="more_info">More</button>
