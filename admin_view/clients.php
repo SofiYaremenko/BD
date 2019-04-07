@@ -56,7 +56,6 @@
   <thead>
     <tr>
       <th>Login</th>
-      <th>Password</th>
       <th>User type</th>
       <th>Surname</th>
       <th>Name</th>
@@ -72,7 +71,6 @@
   <?php while ($row = mysqli_fetch_array($results)) { ?>
     <tr>
       <td><?php echo $row['cl_login']; ?></td>
-      <td><?php echo $row['cl_password']; ?></td>
       <td><?php echo $row['user_type']; ?></td>
       <td><?php echo $row['cl_surname']; ?></td>
       <td><?php echo $row['cl_name']; ?></td>
@@ -100,8 +98,12 @@
       <input type="text" name="login" value="<?php echo $cl_login; ?>">
     </div>
     <div class="input-group">
+      <?php if ($update == false): ?>
       <label>Password</label>
       <input type="text" name="password" value="<?php echo $cl_password; ?>">
+      <?php else: ?>
+      <input type="hidden" name="password" value="<?php echo $cl_password; ?>">
+      <?php endif ?>
     </div>
     <div class="input-group">
       <label>User Type</label>

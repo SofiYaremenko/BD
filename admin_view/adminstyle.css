@@ -179,3 +179,14 @@ form {
   text-decoration: none;
   cursor: pointer;
 }
+
+
+.myBtn {
+    font-size: 15px;
+    color: white;
+    background: #5F9EA0;
+    border: none;
+    text-decoration: none;
+    padding: 2px 5px;
+    border-radius: 3px;
+}

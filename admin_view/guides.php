@@ -58,7 +58,9 @@
           <?php 
             $sql = mysqli_query($db, "SELECT tab_number FROM guides");
             while ($row = $sql->fetch_assoc()){
-            echo "<option value= \"" . $row['tab_number'] ."\">" . $row['tab_number'] . "</option>";}?>
+              $val = $row['tab_number'];
+            echo '<option value="'.$val.'">'.$val.'</option>';
+          }?>
         </select>
       </div>
 
@@ -109,7 +111,6 @@
   <thead>
     <tr>
       <th>Login</th>
-      <th>Password</th>
       <th>User type</th>
       <th>Surname</th>
       <th>Name</th>
@@ -124,7 +125,6 @@
   <?php while ($row = mysqli_fetch_array($results)) { ?>
     <tr>
       <td><?php echo $row['g_login']; ?></td>
-      <td><?php echo $row['g_password']; ?></td>
       <td><?php echo $row['g_usertype']; ?></td>
       <td><?php echo $row['g_surname']; ?></td>
       <td><?php echo $row['g_name']; ?></td>
@@ -132,8 +132,7 @@
       <td><?php echo $row['g_phone']; ?></td>
       <td><?php echo $row['g_anoth_phone']; ?></td>
       <td>
-        
-        <button  id="myBtn"> Add </button></td>
+        <button class="myBtn" id="myBtn"> Add </button></td>
       <td>
         <a href="guides.php?edit_g=<?php echo $row['tab_number']; ?>" class="edit_btn" >Edit</a>
       </td>
@@ -153,8 +152,12 @@
       <input type="text" name="login" value="<?php echo $g_login; ?>">
     </div>
     <div class="input-group">
+      <?php if ($update == false): ?>
       <label>Password</label>
       <input type="text" name="usertype" value="<?php echo $g_password; ?>">
+      <?php else: ?>
+      <input type="hidden" name="usertype" value="<?php echo $g_password; ?>">
+      <?php endif ?>
     </div>
     <div class="input-group">
       <label>User type</label>

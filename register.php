@@ -154,69 +154,75 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+     <link rel="stylesheet" href="styles.css">
+
+    
 </head>
 <body>
+<div class="topnav"> <a>ExplorUAm</a>
+    <a href="main.php">Home</a>
+    <a href="login.php">Login</a>
+    <a class="active"  href="register.php">Register</a>
+</div>
+
 <div class="wrapper">
+    <div class="header">
     <h2>Sign Up</h2>
     <p>Please fill this form to create an account.</p>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+    </div>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form_regist">
+        <div class="input-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label>Username</label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
             <span class="help-block"><?php echo $username_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($lastname_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($lastname_err)) ? 'has-error' : ''; ?>">
             <label>Surname</label>
             <input type="text" name="lastname" class="form-control" value="<?php echo $lastname; ?>">
             <span class="help-block"><?php echo $lastname_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
             <label>Name</label>
             <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>">
             <span class="help-block"><?php echo $firstname_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
             <label>Second Name</label>
             <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
             <span class="help-block"><?php echo $fname_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($passport_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($passport_err)) ? 'has-error' : ''; ?>">
             <label>Passport Number</label>
             <input type="text" name="passport_num" class="form-control" value="<?php echo $passport_num; ?>">
             <span class="help-block"><?php echo $passport_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($birthday_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($birthday_err)) ? 'has-error' : ''; ?>">
             <label>Birthday</label>
             <input type="text" name="birthday" class="form-control" value="<?php echo $birthday; ?>">
             <span class="help-block"><?php echo $birthday_err; ?></span>
         </div>
 
-        <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
             <label>Email</label>
             <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
             <span class="help-block"><?php echo $email_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <label>Password</label>
             <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($phone_err)) ? 'has-error' : ''; ?>">
             <label>Phone</label>
             <input type="text" name="phone" class="form-control" value="<?php echo $phone; ?>">
             <span class="help-block"><?php echo $phone_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+        <div class="input-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
             <label>Confirm Password</label>
             <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
             <span class="help-block"><?php echo $confirm_password_err; ?></span>
         </div>
-        <div class="form-group">
+        <div class="input-group">
             <input type="submit" class="btn btn-primary" value="Submit">
             <input type="reset" class="btn btn-default" value="Reset">
         </div>

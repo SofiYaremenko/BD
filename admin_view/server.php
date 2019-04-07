@@ -41,7 +41,8 @@
 
 	if (isset($_POST['save_manag'])) {
 		$manag_login = $_POST['login'];
-		$manag_password= $_POST['password'];
+		$password= $_POST['password'];
+		$manag_password= password_hash($password, PASSWORD_DEFAULT);
 		$m_usertype= $_POST['usertype'];
 		$manag_surname= $_POST['surname'];
 		$manag_name = $_POST['name'];
@@ -57,7 +58,8 @@
 	if (isset($_POST['update_manag'])) {
 		$id_manager = $_POST['id'];
 		$manag_login = $_POST['login'];
-		$manag_password= $_POST['password'];
+		$password= $_POST['password'];
+		$manag_password= password_hash($password, PASSWORD_DEFAULT);
 		$m_usertype= $_POST['usertype'];
 		$manag_surname= $_POST['surname'];
 		$manag_name = $_POST['name'];
@@ -81,7 +83,8 @@ if (isset($_GET['del_manag'])) {
 
 if (isset($_POST['save_cl'])) {
 		$cl_login = $_POST['login'];
-		$cl_password= $_POST['password'];
+		$password= $_POST['password'];
+		$cl_password= password_hash($password, PASSWORD_DEFAULT);
 		$user_type= $_POST['usertype'];
 		$cl_surname = $_POST['surname'];
 		$cl_name= $_POST['name'];
@@ -99,7 +102,8 @@ if (isset($_POST['save_cl'])) {
 	if (isset($_POST['update_cl'])) {
 		$id_client = $_POST['id'];
 		$cl_login = $_POST['login'];
-		$cl_password= $_POST['password'];
+		$password= $_POST['password'];
+		$cl_password= password_hash($password, PASSWORD_DEFAULT);
 		$user_type= $_POST['usertype'];
 		$cl_surname = $_POST['surname'];
 		$cl_name= $_POST['name'];
@@ -128,7 +132,8 @@ if (isset($_GET['del_cl'])) {
 
 	if (isset($_POST['save_g'])) {
 		$g_login = $_POST['login'];
-		$g_password= $_POST['password'];
+		$password= $_POST['password'];
+		$g_password= password_hash($password, PASSWORD_DEFAULT);
 		$g_usertype= $_POST['usertype'];
 		$g_surname = $_POST['surname'];
 		$g_name= $_POST['name'];
@@ -154,7 +159,8 @@ if (isset($_GET['del_cl'])) {
 	if (isset($_POST['update_g'])) {
 		$tab_number = $_POST['id'];
 		$g_login = $_POST['login'];
-		$g_password= $_POST['password'];
+		$password= $_POST['password'];
+		$g_password= password_hash($password, PASSWORD_DEFAULT);
 		$g_usertype= $_POST['usertype'];
 		$g_surname = $_POST['surname'];
 		$g_name= $_POST['name'];
