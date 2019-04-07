@@ -8,7 +8,8 @@
     if (count($record) == 1 ) {
       $n = mysqli_fetch_array($record);
       $manag_login= $n['manag_login'];
-      $manag_password= $n['manag_password'];
+      $manag_password= $n['manag_password']; 
+      $m_usertype= $_POST['m_usertype'];
       $manag_surname= $n['manag_surname'];
       $manag_name= $n['manag_name'];
       $manag_fname= $n['manag_fname'];
@@ -33,6 +34,7 @@
   <a href="guides.php">Guides</a>
   <a class="active" href="managers.php">Managers</a>
   <a href="order_excursions.php">Order excursions</a>
+  <a href="../main.php" style="float:right"> Logout </a>
 </div>
 
 
@@ -51,6 +53,7 @@
     <tr>
       <th>Login</th>
       <th>Password</th>
+      <th>User Type</th>
       <th>Surname</th>
       <th>Name</th>
       <th>Fname</th>
@@ -64,6 +67,7 @@
     <tr>
       <td><?php echo $row['manag_login']; ?></td>
       <td><?php echo $row['manag_password']; ?></td>
+      <td><?php echo $row['m_usertype']; ?></td>
       <td><?php echo $row['manag_surname']; ?></td>
       <td><?php echo $row['manag_name']; ?></td>
       <td><?php echo $row['manag_fname']; ?></td>
@@ -90,6 +94,10 @@
     <div class="input-group">
       <label>Password</label>
       <input type="text" name="password" value="<?php echo $manag_password; ?>">
+    </div>
+    <div class="input-group">
+      <label>User Type</label>
+      <input type="text" name="usertype"value="<?php echo $m_usertype; ?>">
     </div>
     <div class="input-group">
       <label>Surname</label>

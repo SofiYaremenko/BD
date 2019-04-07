@@ -36,6 +36,7 @@
   <a href="guides.php">Guides</a>
   <a href="managers.php">Managers</a>
   <a href="order_excursions.php">Order excursions</a>
+  <a href="../main.php" style="float:right"> Logout </a>
 </div>
 
 <?php if (isset($_SESSION['message'])): ?>

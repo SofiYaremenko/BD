@@ -9,6 +9,7 @@
 	$id_manager = 0;
 	$manag_login= "";
 	$manag_password= "";
+	$m_usertype = "";
 	$manag_surname= "";
 	$manag_name= ""; 
 	$manag_fname= ""; 
@@ -41,13 +42,14 @@
 	if (isset($_POST['save_manag'])) {
 		$manag_login = $_POST['login'];
 		$manag_password= $_POST['password'];
+		$m_usertype= $_POST['usertype'];
 		$manag_surname= $_POST['surname'];
 		$manag_name = $_POST['name'];
 		$manag_fname= $_POST['fname'];
 		$manag_phone = $_POST['phone'];
 		$m_anoth_phone = $_POST['anoth_phone'];
 
-		mysqli_query($db, "INSERT INTO managers (manag_login, manag_password, manag_surname, manag_name, manag_fname, manag_phone, m_anoth_phone) VALUES ('$manag_login','$manag_password', '$manag_surname', '$manag_name', '$manag_fname', '$manag_phone', '$m_anoth_phone')"); 
+		mysqli_query($db, "INSERT INTO managers (manag_login, manag_password,m_usertype, manag_surname, manag_name, manag_fname, manag_phone, m_anoth_phone) VALUES ('$manag_login','$manag_password','$m_usertype', '$manag_surname', '$manag_name', '$manag_fname', '$manag_phone', '$m_anoth_phone')"); 
 		$_SESSION['message'] = "Manager add"; 
 		header('location: managers.php');
 	}
@@ -56,13 +58,14 @@
 		$id_manager = $_POST['id'];
 		$manag_login = $_POST['login'];
 		$manag_password= $_POST['password'];
+		$m_usertype= $_POST['usertype'];
 		$manag_surname= $_POST['surname'];
 		$manag_name = $_POST['name'];
 		$manag_fname= $_POST['fname'];
 		$manag_phone = $_POST['phone'];
 		$m_anoth_phone = $_POST['anoth_phone'];
 
-		mysqli_query($db, "UPDATE managers SET manag_login='$manag_login', manag_password='$manag_password',manag_surname='$manag_surname',manag_name='$manag_name',manag_fname='$manag_fname',manag_phone='$manag_phone',m_anoth_phone='$m_anoth_phone' WHERE id_manager=$id_manager");
+		mysqli_query($db, "UPDATE managers SET manag_login='$manag_login', manag_password='$manag_password',m_usertype='$m_usertype',manag_surname='$manag_surname',manag_name='$manag_name',manag_fname='$manag_fname',manag_phone='$manag_phone',m_anoth_phone='$m_anoth_phone' WHERE id_manager=$id_manager");
 		$_SESSION['message'] = "Admin info updated!"; 
 		header('location: managers.php');
 	}
@@ -137,6 +140,16 @@ if (isset($_GET['del_cl'])) {
 		$_SESSION['message'] = "Guide add"; 
 		header('location: guides.php');
 	}
+
+	if (isset($_POST['save_l'])) {
+		$guides_fk = $_POST['id_g'];
+		$languag_fk= $_POST['lan_id'];
+
+		mysqli_query($db, "INSERT INTO possess (guides_fk, languag_fk) VALUES (1, $languag_fk)"); 
+		$_SESSION['message'] = "Guide language add"; 
+		header('location: guides.php');
+	}
+
 
 	if (isset($_POST['update_g'])) {
 		$tab_number = $_POST['id'];

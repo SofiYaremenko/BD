@@ -6,16 +6,20 @@
 	
 	$update = false;
 
-	$id_excursion= 0;
-	$name_excurs= "";
-	$discrip_excurs= "";
-	$min_people= 0;
-	$max_people= 0;
-	$duration= "";
-	$cost_excurs= 0;
-	$winter= 0;
-	$spring= 0;
-	$summer= 0;
-	$autumn= 0;
+	$id_order= 0;
+	$order_date= "";
+	$deadline_pay= "";
+	$persons= 0;
+	$language= 0;
+	$response= "";
+	$discount= 0;
+	$if_payed= 0;
+	$status= 0;
+	$client_c_id= 0;
+	$manag_c_id= 0;
+	$excurs_c_id= 0;
+
+
+	`order`(`id_order`, `order_date`, `deadline_pay`, `persons`, `language`, `response`, `discount`, `if_payed`, `status`, `client_c_id`, `manag_c_id`, `excurs_c_id`
 
 ?>
