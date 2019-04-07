@@ -9,7 +9,7 @@ include("functions.php"); ?>
 <body>
 <div class="topnav"> <a>ExplorUAm</a>
   <a href="main.php">Home</a>
-  <a href="index.php">Login</a>
+  <a href="login.php">Login</a>
   <a class="active" href="register.php">Register</a>
 </div>
 
@@ -54,7 +54,7 @@ include("functions.php"); ?>
     <button type="submit" class="btn" name="register_btn">Register</button>
   </div>
   <p>
-    Already a member? <a href="index.php">Log in</a>
+    Already a member? <a href="login.php">Log in</a>
   </p>
 </form>
 </body>

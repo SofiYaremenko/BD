@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <div class="topnav"> <a>ExplorUAm</a>
     <a href="main.php">Home</a>
-    <a class="active"  href="index.php">Login</a>
+    <a class="active"  href="login.php">Login</a>
     <a href="register.php">Register</a>
 </div>
 
@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <h2>Login</h2>
 </div>
 
-<form method="post" action="index.php" class="form_regist">
+<form method="post" action="login.php" class="form_regist">
     <div class="input-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
         <label>Username</label>
         <input type="text" name="username" >

@@ -6,7 +6,7 @@
 
 <div class="topnav"> <a>ExplorUAm</a>
   <a class="active" href="main.php">Home</a>
-  <a href="index.php">Login</a>
+  <a href="login.php">Login</a>
   <a href="register.php">Register</a>
 </div>
 
