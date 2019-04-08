@@ -1,9 +1,10 @@
 <?php
-require_once "../config.php";
-
+require_once "config.php";
+session_start();
 if (isset($_GET['id_eo'])) {
     $id_excursion = $_GET['id_eo'];
-    echo $id_excursion;
+    $redir = "";
+
     $update = true;
     $sql = mysqli_query($link, "SELECT * FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion"
                                        . " WHERE EO.id_excurs_order='$id_excursion'");
@@ -42,21 +43,26 @@ if (isset($_GET['id_eo'])) {
 <html>
 <head>
     <title><?php echo $username; ?> </title>
-    <link rel="stylesheet" type="text/css" href="userstyle.css">
+    <link rel="stylesheet" type="text/css" href="user_view/userstyle.css">
 </head>
 <body>
 
 <div class="topnav"> <a>ExplorUAm</a>
-    <a href="main.php">Excursions</a>
-    <a href="user_order.php">My Orders</a>
-    <a class="active"  href="user_info.php">Account</a>
-    <a href="../logout.php" style="float:right"> Logout </a>
+    <?php  if($_SESSION['user_type'] == "user") {
+       echo "<a href=\"user_view/user_order.php\">My Orders</a>";
+       echo "<a href=\"user_view/user_info.php\">Account</a>";
+    }elseif ($_SESSION['user_type'] == "guide") {
+        echo "<a href=\"guide_view/future_excurs.php\">My future excursions </a>";
+        echo "<a href=\"guide_view/guide_info.php\">Account</a>";
+    } ?>
+    <a href="logout.php" style="float:right"> Logout </a>
 </div>
 
-<div class="header">
-    <h2>Home Page</h2>
+
+<div class="header" align="center">
+    <h2>Excursion Detailed Info</h2>
 </div>
-<div class="content">
+<div class="content" >
      <?php  if (isset($_GET['id_eo'])) : ?>
         <table>
             <tr><td>Title:</td><td><?php echo $name; ?></td></tr>
@@ -74,7 +80,9 @@ if (isset($_GET['id_eo'])) {
                 </td></tr>
         </table>
     <?php endif ?>
-    <p>Places</p>
+    <div class="header" align="center">
+    <h3>Places Info</h3>
+</div>
     <table>
         <thead>
         <tr>

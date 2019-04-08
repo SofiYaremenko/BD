@@ -15,6 +15,7 @@ session_start();
           die("This username could not be found! ");
       }
       while ($n = mysqli_fetch_array($sql)){
+        $id = $n['tab_number'];
       $g_login= $n['g_login'];
       $g_password= $n['g_password'];
       $g_usertype= $n['g_usertype'];
@@ -30,7 +31,7 @@ session_start();
 
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="guidestyle.css">
 
 
@@ -52,8 +53,7 @@ session_start();
       <input type="text" name="login" value="<?php echo $g_login; ?>" readonly>
     </div>
     <div class="input-group">
-      <label>Password</label>
-      <input type="password" name="password" value="<?php echo $g_password; ?>" readonly>
+      <input type="hidden" name="password" value="<?php echo $g_password; ?>" readonly>
     </div>
     <div class="input-group">
       <input type="hidden" name="usertype" value="<?php echo $g_usertype; ?>">

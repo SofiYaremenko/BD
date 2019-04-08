@@ -28,12 +28,6 @@
       if($username != $dbusername){
           die("There has been a fatal error. Please try again.");
       }
-      if (isset($_GET['itemno'])) {
-    $id_excurs_order = $_GET['itemno'];
-    $date =date("Y-m-d");
-    mysqli_query($link, "INSERT INTO `order`(`order_date`, `deadline_pay`, `persons`, `language`, `response`, `discount`, `if_payed`, `status`, `client_c_id`, `manag_c_id`, `excurs_c_id`) VALUES ($date, $date , 1,'UKRANIAN','',0,0,0,$id_client,1,$id_excurs_order)");
- 
-  }
 
 
   }
@@ -58,34 +52,30 @@
 <?php
 include("../db.php");
 
-  $sql = mysqli_query($connection, "SELECT * FROM `excursion_order` EO INNER JOIN `excursions` E ON E.id_excursion = EO.fk_excurs GROUP BY `excurs_date`");
-   $sel=mysqli_query($connection,"select * from excursions");
+   $sel=mysqli_query($link,"select * from excursions");
    echo"<form method='post'><table border='0' align='center'><tr>";
-   $n=0;
-    while($arr=mysqli_fetch_array($sql))
+   $n=1;
+    while($arr=mysqli_fetch_array($sel))
    {
-    $d=$arr['id_excursion'];
-   $i=$arr['id_excurs_order'];
+   $i=$arr['id_excursion'];
     if($n%4==0)
-	   {
-	     echo "<tr>";
-	   }
-      echo "
-        <td height='300' width='300' align='center'>
-        <img src='../img/tour/$d.jpg' height='200' width='200'><br/>".
-        "<br>".$arr['name_excurs'].
-        "<br><b>Discription: </b>".$arr['discrip_excurs'].
-        "<br><b>Cost: </b>".$arr['price'].
-        "<br><b>Date: </b>".$arr['excurs_date'].
-        "<br><br><a href='main.php?itemno=$i'>Order</a>
-        <a href='index.php?con=14 & itemno=$i'><button>View More</button></a><br><br>
-        </td>";
-      $n++;
+  {
+  echo "<tr>";
+  }
+   echo "
+   <td height='280' width='240' align='center'><img src='../img/tour/$i.jpg' height='200' width='200'><br/>".
+   "<br>".$arr['name_excurs'].
+   "<br><b>Discription: </b>".$arr['discrip_excurs'].
+   "<br><b>Cost: </b>".$arr['cost_excurs'].
+   "<br><br><a href='index.php?con=12 & itemno=$i'><button>Order</button></a>
+   <a href='index.php?con=14 & itemno=$i'><button>View</button></a><br><br>
+   </td>";
+  $n++;
 
    }
-   	  echo "</tr></table>
+      echo "</tr></table>
        </form>";
-	?>
+  ?>
   <div><br>
 
 </div>
