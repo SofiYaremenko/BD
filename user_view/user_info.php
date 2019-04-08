@@ -46,8 +46,8 @@
     <a href="../logout.php" style="float:right"> Logout </a>
 </div>
 
-<div class="header">
-    <h2>Home Page</h2>
+<div class="header" align="center">
+    <h2>Profile Info</h2>
 </div>
 <div class="content">
     <!-- notification message -->
@@ -64,7 +64,7 @@
 
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
-        <p><?php echo $_SESSION['username']; ?> Profile</p>
+        
     <table>
         <tr><td>First name:</td><td><?php echo $firstname; ?></td></tr>
         <tr><td>Second name:</td><td><?php echo $fname; ?></td></tr>

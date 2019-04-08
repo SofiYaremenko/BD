@@ -43,7 +43,7 @@
     $email= $_POST['email'];
     $cl_phone= $_POST['phone'];
 
-    mysqli_query($db, "UPDATE clients SET cl_password='$cl_password',user_type='$user_type',cl_surname='$cl_surname',cl_name='$cl_name',cl_fname='$cl_fname',passport_n='$passport_n',birthday='$birthday',email='$email',cl_phone='$cl_phone' WHERE id_client=$id_client");
+    mysqli_query($link, "UPDATE clients SET cl_password='$cl_password',user_type='$user_type',cl_surname='$cl_surname',cl_name='$cl_name',cl_fname='$cl_fname',passport_n='$passport_n',birthday='$birthday',email='$email',cl_phone='$cl_phone' WHERE id_client=$id_client");
     
     header('location: user_info.php');
 }

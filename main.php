@@ -45,6 +45,7 @@ include("config.php");
 
 </div>
 </div>
+<a href="logout.php" style="float:right"> Logout </a>
 
 </body>
 </html>

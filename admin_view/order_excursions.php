@@ -1,7 +1,7 @@
 <?php  include('../config.php');
 
   if (isset($_GET['edit_oe'])) {
-    $tab_number = $_GET['edit_oe'];
+    $id_excurs_order = $_GET['edit_oe'];
     $update = true;
     $record = mysqli_query($link, "SELECT * FROM excursion_order WHERE id_excurs_order=$id_excurs_order");
 
@@ -11,7 +11,8 @@
       $excurs_date= $n['excurs_date'];
       $time_start= $n['time_start'];
       $fk_excurs= $n['fk_excurs'];
-      $fk_carrier= $n['fk_guides'];
+      $fk_carrier= $n['fk_carrier'];
+      $fk_guides= $n['fk_guides'];
     }
   }
 
@@ -72,10 +73,10 @@
       <td><?php echo $row['fk_carrier']; ?></td>
       <td><?php echo $row['fk_guides']; ?></td>
       <td>
-        <a href="order_excursions.php?edit_eo=<?php echo $row['id_excurs_order']; ?>" class="edit_btn" >Edit</a>
+        <a href="order_excursions.php?edit_oe=<?php echo $row['id_excurs_order']; ?>" class="edit_btn" >Edit</a>
       </td>
       <td>
-        <a href="server_ord.php?del_eo=<?php echo $row['id_excurs_order']; ?>" class="del_btn">Delete</a>
+        <a href="server_ord.php?del_oe=<?php echo $row['id_excurs_order']; ?>" class="del_btn">Delete</a>
       </td>
     </tr>
   <?php } ?>
@@ -111,9 +112,9 @@
     </div>
     <div class="input-group">
       <?php if ($update == true): ?>
-      <button class="btn" type="submit" name="update_eo" style="background: #ddd;" >Update</button>
+      <button class="btn" type="submit" name="update_oe" style="background: #ddd;" >Update</button>
       <?php else: ?>
-      <button class="btn" type="submit" name="save_eo" >Add</button>
+      <button class="btn" type="submit" name="save_oe" >Add</button>
       <?php endif ?>
     </div>
   </form>

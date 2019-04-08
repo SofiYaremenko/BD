@@ -1,6 +1,5 @@
 <?php 
-	session_start();
-	$db = mysqli_connect('localhost', 'root', '', 'explordb');
+	session_start(); include('../config.php');
 
 	// initialize variables
 	
@@ -32,7 +31,7 @@
 		$manag_c_id= $_POST['manag_id'];
 		$excurs_c_id= $_POST['excurs_id'];
 
-		mysqli_query($db, "INSERT INTO order (order_date, deadline_pay, persons, language, response, discount, if_payed, status, client_c_id, manag_c_id, excurs_c_id) 
+		mysqli_query($link, "INSERT INTO order (order_date, deadline_pay, persons, language, response, discount, if_payed, status, client_c_id, manag_c_id, excurs_c_id) 
 			VALUES ('$order_date','$deadline_pay', $persons, '$language', '$response', $discount, $if_payed, $status, $client_c_id, $manag_c_id, $excurs_c_id)"); 
 		$_SESSION['message'] = "Order add"; 
 		header('location: orders.php');
@@ -52,7 +51,7 @@
 		$manag_c_id= $_POST['manag_id'];
 		$excurs_c_id= $_POST['excurs_id'];
 
-		mysqli_query($db, "UPDATE order SET order_date='$order_date',deadline_pay='$deadline_pay', persons=$persons, language='$language', response='$response', discount=$discount, if_payed=$if_payed, status=$status, client_c_id=$client_c_id, manag_c_id=$manag_c_id, excurs_c_id=$excurs_c_id WHERE id_order=$id_order");
+		mysqli_query($link, "UPDATE order SET order_date='$order_date',deadline_pay='$deadline_pay', persons=$persons, language='$language', response='$response', discount=$discount, if_payed=$if_payed, status=$status, client_c_id=$client_c_id, manag_c_id=$manag_c_id, excurs_c_id=$excurs_c_id WHERE id_order=$id_order");
 		$_SESSION['message'] = "Order info updated!"; 
 		header('location: orders.php');
 }
@@ -61,7 +60,7 @@
 
 if (isset($_GET['del_or'])) {
 	$id_order = $_GET['del_or'];
-	mysqli_query($db, "DELETE FROM order WHERE id_order=$id_order");
+	mysqli_query($link, "DELETE FROM order WHERE id_order=$id_order");
 	$_SESSION['message'] = "Order deleted!"; 
 	header('location: orders.php');
 }

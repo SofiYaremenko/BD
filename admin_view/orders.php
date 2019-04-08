@@ -1,9 +1,35 @@
 <?php  include('../config.php');
 
+if(isset($_POST['search']))
+{
+    $valueToSearch = $_POST['valueToSearch'];
+    $query = "SELECT * FROM `order` WHERE client_c_id=$valueToSearch";
+    
+}else if(isset($_POST['search2']))
+{
+    $valueToSearch2 = $_POST['valueToSearch2'];
+    $query = "SELECT * FROM `order` WHERE excurs_c_id=$valueToSearch2";
+    
+}else if(isset($_POST['filter']))
+{
+    $query = "SELECT * FROM `order` ORDER BY order_date";
+    
+}else if(isset($_POST['filter2']))
+{
+    $query = "SELECT * FROM `order` ORDER BY if_payed";
+    
+}else if(isset($_POST['undo']))
+{
+   $query = "SELECT * FROM `order`";
+  }
+ else {
+    $query = "SELECT * FROM `order`";
+}
+
   if (isset($_GET['edit_or'])) {
     $id_order = $_GET['edit_or'];
     $update = true;
-    $record = mysqli_query($link, "SELECT * FROM order WHERE id_order=$id_order");
+    $record = mysqli_query($link, "SELECT * FROM `order` WHERE id_order=$id_order");
 
     if (mysqli_num_rows($record) == 1 ) {
       $n = mysqli_fetch_array($record);
@@ -44,6 +70,20 @@
   <a href="../logout.php" style="float:right"> Logout </a>
 </div>
 
+ <form action="orders.php" method="post">
+  <div>
+  <div class="input-group" >
+      <input type="text" name="valueToSearch" value="Find by client ID" style="width: 30%">
+      <input type="submit" name="search" value="Find" style="width: 14%">
+      <input type="text" name="valueToSearch2" value="Find by excursions ID" style="width: 30%">
+      <input type="submit" name="search2" value="Find" style="width: 14%">
+      <input type="submit" name="undo" value="Undo" style="width: 10%"><br><br>
+      <input type="submit" name="filter" value="Filter by Date" style="width: 10%; ">
+      <input type="submit" name="filter2" value="Filter by Payed" style="width: 10%; ">
+    </div>
+  </div>
+  </form>
+
 
 <?php if (isset($_SESSION['message'])): ?>
   <div class="msg">
@@ -53,7 +93,7 @@
     ?>
   </div>
 <?php endif ?>
-<?php $results = mysqli_query($link, "SELECT * FROM order"); 
+<?php $results = mysqli_query($link, $query); 
 ?>
 
 <table style="width: 95%">
@@ -102,48 +142,48 @@
     <input type="hidden" name="id" value="<?php echo $id_order; ?>">
     </div>
     <div class="input-group">
-      <label>Login</label>
-      <input type="text" name="login" value="<?php echo $cl_login; ?>">
+      <label>Date</label>
+      <input type="text" name="or_date" value="<?php echo $order_date; ?>">
     </div>
     <div class="input-group">
-      <?php if ($update == false): ?>
-      <label>Password</label>
-      <input type="text" name="password" value="<?php echo $cl_password; ?>">
-      <?php else: ?>
-      <input type="hidden" name="password" value="<?php echo $cl_password; ?>">
-      <?php endif ?>
+      <label>Deadline of pay</label>
+      <input type="text" name="pay_date" value="<?php echo $deadline_pay; ?>">
     </div>
     <div class="input-group">
-      <label>User Type</label>
-      <input type="text" name="usertype"value="<?php echo $user_type; ?>">
+      <label>Persons</label>
+      <input type="text" name="persons"value="<?php echo $persons; ?>">
     </div>
     <div class="input-group">
-      <label>Surname</label>
-      <input type="text" name="surname" value="<?php echo $cl_surname; ?>">
+      <label>Language</label>
+      <input type="text" name="language"value="<?php echo $language; ?>">
     </div>
     <div class="input-group">
-      <label>Name</label>
-      <input type="text" name="name" value="<?php echo $cl_name; ?>">
+      <label>Response</label>
+      <input type="text" name="response" value="<?php echo $response; ?>">
     </div>
     <div class="input-group">
-      <label>Fname</label>
-      <input type="text" name="fname" value="<?php echo $cl_fname; ?>">
+      <label>Discount</label>
+      <input type="text" name="discount" value="<?php echo $discount; ?>">
     </div>
     <div class="input-group">
-      <label>Passport Number</label>
-      <input type="text" name="passport" value="<?php echo $passport_n; ?>">
+      <label>Payed?</label>
+      <input type="text" name="pay" value="<?php echo $if_payed; ?>">
     </div>
     <div class="input-group">
-      <label>Birthday Date</label>
-      <input type="text" name="birthday" value="<?php echo $birthday; ?>">
+      <label>Confirmed</label>
+      <input type="text" name="status" value="<?php echo $status; ?>">
     </div>
     <div class="input-group">
-      <label>Email</label>
-      <input type="text" name="email" value="<?php echo $email; ?>">
+      <label>Client id</label>
+      <input type="text" name="client_id" value="<?php echo $client_c_id; ?>">
     </div>
     <div class="input-group">
-      <label>Phone</label>
-      <input type="text" name="phone" value="<?php echo $cl_phone; ?>">
+      <label>Manager id</label>
+      <input type="text" name="manag_id" value="<?php echo $manag_c_id; ?>">
+    </div>
+    <div class="input-group">
+      <label>Excursion id</label>
+      <input type="text" name="excurs_id" value="<?php echo $excurs_c_id; ?>">
     </div>
     <div class="input-group">
       <?php if ($update == true): ?>
