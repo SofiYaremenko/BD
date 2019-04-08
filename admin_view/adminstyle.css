@@ -105,6 +105,14 @@ form {
     border: none;
     border-radius: 5px;
 }
+
+.btn_get {
+    text-decoration: none;
+    padding: 2px 5px;
+    background: #5F9EA0;
+    color: white;
+    border-radius: 3px;
+}
 .edit_btn {
     text-decoration: none;
     padding: 2px 5px;

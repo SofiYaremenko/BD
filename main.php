@@ -12,7 +12,8 @@
 
 
 <div><br/><center><h2><font face="Lucida Handwriting" size="+1" color="#00CCFF">Excursions</font></h2></center></div>
-<div style="width:100%;float:left" >
+
+<div align="right" >
 <?php
 include("config.php");
 
@@ -32,8 +33,8 @@ include("config.php");
    "<br>".$arr['name_excurs'].
    "<br><b>Discription: </b>".$arr['discrip_excurs'].
    "<br><b>Cost: </b>".$arr['cost_excurs'].
-   "<br><br><a href='index.php?con=12 & itemno=$i'><button>Order</button></a>
-   <a href='index.php?con=14 & itemno=$i'><button>View</button></a><br><br>
+   "<br><br><a href='order.php?id_ex=$i'>Order</a>
+   <a href='excurs_more.php?id_ex=$i'>View more</a>
    </td>";
   $n++;
 

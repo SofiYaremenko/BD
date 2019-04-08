@@ -1,5 +1,12 @@
 <?php  include('server_ex_pl.php');
-
+if(isset($_GET['get_pl'])){
+  $id_ex = $_GET['get_pl'];
+    $query = "SELECT * FROM places WHERE id_place IN (SELECT places_fk FROM consists_of WHERE excursion_fk = $id_ex)";
+    
+}else {
+    $query = "SELECT * FROM places";
+    
+}
   if (isset($_GET['edit_pl'])) {
     $id_place = $_GET['edit_pl'];
     $update = true;
@@ -47,7 +54,7 @@
     ?>
   </div>
 <?php endif ?>
-<?php $results = mysqli_query($db, "SELECT * FROM places"); ?>
+<?php $results = mysqli_query($db, $query); ?>
 
 <table>
   <thead>

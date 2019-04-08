@@ -1,5 +1,30 @@
 <?php  include('server_ex_pl.php');
 
+if(isset($_POST['filter'])){
+    $query = "SELECT * FROM excursions ORDER BY max_people";
+    
+}else if(isset($_POST['filter_cost'])){
+    $query = "SELECT * FROM excursions ORDER BY cost_excurs";
+    
+}else if(isset($_POST['filter_winter'])){
+    $query = "SELECT * FROM excursions WHERE winter=1";
+    
+}else if(isset($_POST['filter_spring'])){
+    $query = "SELECT * FROM excursions WHERE spring=1";
+    
+}else if(isset($_POST['filter_summer'])){
+    $query = "SELECT * FROM excursions WHERE summer=1";
+    
+}else if(isset($_POST['filter_autumn'])){
+    $query = "SELECT * FROM excursions WHERE autumn=1";
+    
+}else if(isset($_POST['undo'])){
+   $query = "SELECT * FROM excursions";
+  }else {
+    $query = "SELECT * FROM excursions";
+}
+
+
   if (isset($_GET['edit_ex'])) {
     $id_excursion = $_GET['edit_ex'];
     $update = true;
@@ -39,6 +64,18 @@
   <a href="../logout.php" style="float:right"> Logout </a>
 </div>
 
+ <form action="excursions.php" method="post">
+  <div class="input-group" align = center>
+      <input type="submit" name="filter" value="Max People" style="width: 12%; ">
+      <input type="submit" name="filter_cost" value="Cost" style="width: 12%; ">
+      <input type="submit" name="filter_winter" value="Winter" style="width: 12%; ">
+      <input type="submit" name="filter_spring" value="Spring" style="width: 12%; ">
+      <input type="submit" name="filter_summer" value="Summer" style="width: 12%; ">
+      <input type="submit" name="filter_autumn" value="Autumn" style="width: 12%; ">
+      <input type="submit" name="undo" value="Undo" style="width: 9%">
+    </div>
+  </form>
+
 <?php if (isset($_SESSION['message'])): ?>
   <div class="msg">
     <?php 
@@ -47,9 +84,9 @@
     ?>
   </div>
 <?php endif ?>
-<?php $results = mysqli_query($db, "SELECT * FROM excursions"); ?>
+<?php $results = mysqli_query($db, $query); ?>
 
-<table>
+<table style="width: 90%">
   <thead>
     <tr>
       <th>Name</th>
@@ -62,7 +99,7 @@
       <th>For spring</th>
       <th>For summer</th>
       <th>For autumn</th>
-      <th colspan="2">Action</th>
+      <th colspan="3">Action</th>
     </tr>
   </thead>
   
@@ -74,15 +111,18 @@
       <td><?php echo $row['max_people']; ?></td>
       <td><?php echo $row['duration']; ?></td>
       <td><?php echo $row['cost_excurs']; ?></td>
-      <td><?php echo $row['winter']; ?></td>
-      <td><?php echo $row['spring']; ?></td>
-      <td><?php echo $row['summer']; ?></td>
-      <td><?php echo $row['autumn']; ?></td>
+      <td><?php if ($row['winter'] == 1) echo "Yes"; else echo "No"; ?></td>
+      <td><?php if ($row['spring'] == 1) echo "Yes"; else echo "No"; ?></td>
+      <td><?php if ($row['summer'] == 1) echo "Yes"; else echo "No"; ?></td>
+      <td><?php if ($row['autumn'] == 1) echo "Yes"; else echo "No"; ?></td>
       <td>
         <a href="excursions.php?edit_ex=<?php echo $row['id_excursion']; ?>" class="edit_btn" >Edit</a>
       </td>
       <td>
         <a href="server_ex_pl.php?del_ex=<?php echo $row['id_excursion']; ?>" class="del_btn">Delete</a>
+      </td>
+      <td>
+        <a href="places.php?get_pl=<?php echo $row['id_excursion']; ?>" class="btn_get">Get Places</a>
       </td>
     </tr>
   <?php } ?>

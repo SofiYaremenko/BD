@@ -1,6 +1,43 @@
 <?php
 require_once "config.php";
 session_start();
+
+if (isset($_GET['id_ex'])) {
+    $id_excursion = $_GET['id_ex'];
+    $redir = "";
+
+    $update = true;
+    $sql = mysqli_query($link, "SELECT * FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion WHERE E.id_excursion=$id_excursion");
+    $sql1 =mysqli_query($link,"SELECT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion INNER JOIN places P ON P.id_place = CO.places_fk WHERE E.id_excursion= $id_excursion");
+
+    if(mysqli_num_rows($sql) == 0){
+        die("This excursion order id could not be found! ");
+    }
+    while ($row = mysqli_fetch_array($sql)){
+        $id = $row['id_excursion'];
+        $price = $row['price'];
+        $date = $row['excurs_date'];
+        $time = $row['time_start'];
+        $name = $row['name_excurs'];
+        $about = $row['discrip_excurs'];
+        $min_p = $row['min_people'];
+        $max_p = $row['max_people'];
+        $duration = $row['duration'];
+        $w = $row['winter'];
+        $sp = $row['spring'];
+        $sm = $row['summer'];
+        $a = $row['autumn'];
+    }
+    if($id_excursion != $id){
+        echo $id_excursion ." ! = " .$id;
+        die("There has been a fatal error. Please try again.");
+    }
+
+}
+
+
+
+
 if (isset($_GET['id_eo'])) {
     $id_excursion = $_GET['id_eo'];
     $redir = "";
@@ -8,9 +45,7 @@ if (isset($_GET['id_eo'])) {
     $update = true;
     $sql = mysqli_query($link, "SELECT * FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion"
                                        . " WHERE EO.id_excurs_order='$id_excursion'");
-    $sql1 =mysqli_query($link,"SELECT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion" .
-                                                                       " INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion " .
-                                                                       " INNER JOIN places P ON P.id_place = CO.places_fk WHERE EO.id_excurs_order= '$id_excursion'");
+    $sql1 =mysqli_query($link,"SELECT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion" ." INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion " ." INNER JOIN places P ON P.id_place = CO.places_fk WHERE EO.id_excurs_order= '$id_excursion'");
 
     if(mysqli_num_rows($sql) == 0){
         die("This excursion order id could not be found! ");
@@ -63,7 +98,7 @@ if (isset($_GET['id_eo'])) {
     <h2>Excursion Detailed Info</h2>
 </div>
 <div class="content" >
-     <?php  if (isset($_GET['id_eo'])) : ?>
+     
         <table>
             <tr><td>Title:</td><td><?php echo $name; ?></td></tr>
             <tr><td>Date:</td><td><?php echo $date; ?></td></tr>
@@ -79,7 +114,7 @@ if (isset($_GET['id_eo'])) {
                 <input type="checkbox" readonly <?php echo ($a==1 ? 'checked' : '');?>>autumn<Br>
                 </td></tr>
         </table>
-    <?php endif ?>
+    
     <div class="header" align="center">
     <h3>Places Info</h3>
 </div>

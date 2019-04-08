@@ -6,8 +6,7 @@ if (isset($_GET['id_eo'])) {
     $update = true;
     $sql = mysqli_query($link, "SELECT * FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion"
                                        . " WHERE EO.id_excurs_order='$id_excursion'");
-    $sql1 =mysqli_query($link,"SELECT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion" .
-                                                                       " INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion " .
+    $sql1 =mysqli_query($link,"SELECT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion" ." INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion " .
                                                                        " INNER JOIN places P ON P.id_place = CO.places_fk WHERE EO.id_excurs_order= '$id_excursion'");
 
     if(mysqli_num_rows($sql) == 0){
