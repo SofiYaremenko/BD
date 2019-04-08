@@ -47,12 +47,12 @@ if (isset($_GET['id_eo'])) {
 
 <div class="topnav"> <a>ExplorUAm</a>
     <a href="main.php">Excursions</a>
-    <a href="user_order.php">My Orders</a>
-    <a class="active"  href="user_info.php">Account</a>
+    <a class="active" href="user_order.php">My Orders</a>
+    <a  href="user_info.php">Account</a>
     <a href="../logout.php" style="float:right"> Logout </a>
 </div>
 
-<div class="header">
+<div class="header" align="center">
     <h2>Excursion Detailed Info</h2>
 </div>
 <div class="content">
@@ -66,14 +66,16 @@ if (isset($_GET['id_eo'])) {
             <tr><td>About:</td><td><?php echo $about ; ?></td></tr>
             <tr><td>Number of people:</td><td><?php echo $min_p ." - " . $max_p; ?></td></tr>
             <tr><td>Seasons:</td><td>
-            <p><input type="checkbox" <?php echo ($w==1 ? 'checked' : '');?> readonly>winter<Br>
+            <p><input type="checkbox" <?php echo ($w==1 ? 'checked' : '');?> >winter<Br>
                 <input type="checkbox" readonly <?php echo ($sp==1 ? 'checked' : '');?>>spring<Br>
                 <input type="checkbox" readonly <?php echo ($sm==1 ? 'checked' : '');?>>summer<Br>
                 <input type="checkbox" readonly <?php echo ($a==1 ? 'checked' : '');?>>autumn<Br>
                 </td></tr>
         </table>
     <?php endif ?>
-    <p>Places</p>
+    <div class="header" align="center">
+    <h3>Places Info</h3>
+</div>
     <table>
         <thead>
         <tr>
