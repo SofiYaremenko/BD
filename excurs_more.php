@@ -8,7 +8,7 @@ if (isset($_GET['id_ex'])) {
 
     $update = true;
     $sql = mysqli_query($link, "SELECT * FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion WHERE E.id_excursion=$id_excursion");
-    $sql1 =mysqli_query($link,"SELECT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion INNER JOIN places P ON P.id_place = CO.places_fk WHERE E.id_excursion= $id_excursion");
+    $sql1 =mysqli_query($link,"SELECT DISTINCT P.* FROM excursion_order EO INNER JOIN excursions E ON EO.fk_excurs = E.id_excursion INNER JOIN consists_of CO ON CO.excursion_fk = E.id_excursion INNER JOIN places P ON P.id_place = CO.places_fk WHERE E.id_excursion= $id_excursion");
 
     if(mysqli_num_rows($sql) == 0){
         die("This excursion order id could not be found! ");
@@ -81,6 +81,13 @@ if (isset($_GET['id_eo'])) {
     <link rel="stylesheet" type="text/css" href="user_view/userstyle.css">
 </head>
 <body>
+
+<div class="topnav"> <a>ExplorUAm</a>
+    <a href="main.php">Excursions</a>
+    <a href="user_order.php">My Orders</a>
+    <a class="active"  href="user_info.php">Account</a>
+    <a href="../logout.php" style="float:right"> Logout </a>
+</div>
 
 <div class="topnav"> <a>ExplorUAm</a>
     <?php  if($_SESSION['user_type'] == "user") {

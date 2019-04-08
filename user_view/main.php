@@ -67,8 +67,8 @@ include("../db.php");
    "<br>".$arr['name_excurs'].
    "<br><b>Discription: </b>".$arr['discrip_excurs'].
    "<br><b>Cost: </b>".$arr['cost_excurs'].
-   "<br><br><a href='../order.php?id_ex=$i'><button>Order</button></a>
-   <a href='index.php?con=14 & itemno=$i'><button>View</button></a><br><br>
+   "<br><br><a href='../order.php?id_ex=$i'>Order</a>
+   <a href='../excurs_more.php?id_ex=$i'>View more</a><br><br>
    </td>";
 
    
